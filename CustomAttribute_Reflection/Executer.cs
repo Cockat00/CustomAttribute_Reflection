@@ -40,7 +40,7 @@ namespace CustomAttribute_Reflection
                     {
                         foreach (var target in methodInfo.GetCustomAttributes<ExecuteMe>())
                         {
-                            MethodParamCtrl(methodInfo.GetParameters(), target.Arguments);
+                            //MethodParamCtrl(methodInfo.GetParameters(), target.Arguments);
                             methodInfo.Invoke(Activator.CreateInstance(type), target.Arguments);
                         }
                     }
@@ -48,6 +48,14 @@ namespace CustomAttribute_Reflection
                     {
                         Console.WriteLine(
                             $"Instance '{type.FullName}' won't be considered. {mme.Message}");
+                    }
+                    catch (TargetParameterCountException tpce)
+                    {
+                        Console.WriteLine($"Method of name '{methodInfo.Name}' won't be considered. {tpce.Message}");
+                    }
+                    catch (ArgumentException te)
+                    {
+                        Console.WriteLine($"Method of name '{methodInfo.Name}' won't be considered. {te.Message}");
                     }
                 }
             }

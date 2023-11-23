@@ -55,13 +55,19 @@ namespace MyLibrary
     public class Foo3
     {
         [ExecuteMe]
-        public void M1()
+        public void M1024()
         {
-            Console.WriteLine($"{nameof(Foo3)}_{nameof(M1)}()");
+            Console.WriteLine($"{nameof(Foo3)}_{nameof(M1024)}()");
         }
 
-        [ExecuteMe(3)]
-        public void M2(int x)
+        [ExecuteMe("3","4")]
+        public void M2(string fst)
+        {
+            Console.WriteLine($"{nameof(Foo3)}_{nameof(M2)}() {nameof(fst)} = {fst}");
+        }
+
+        [ExecuteMe(77)]
+        public void M3(char x)
         {
             Console.WriteLine($"{nameof(Foo3)}_{nameof(M2)}() {nameof(x)} = {x}");
         }
