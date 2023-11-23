@@ -23,7 +23,7 @@ namespace MyLibrary
         [ExecuteMe]
         public void M1()
         {
-            Console.WriteLine("M1()");
+            Console.WriteLine($"{nameof(Foo)}_{nameof(M1)}()");
         }
 
         [ExecuteMe(45)]
@@ -31,13 +31,13 @@ namespace MyLibrary
         [ExecuteMe(3)]
         public void M2(int a)
         {
-            Console.WriteLine($"M2() {nameof(a)}={a}");
+            Console.WriteLine($"{nameof(Foo)}_{nameof(M2)}() {nameof(a)}={a}");
         }
 
         [ExecuteMe("hello", "reflection")]
         public void M3(string first, string second)
         {
-            Console.WriteLine($"M3() {nameof(first)} = {first}, {nameof(second)} = {second}");
+            Console.WriteLine($"{nameof(Foo)}_{nameof(M3)}() {nameof(first)} = {first}, {nameof(second)} = {second}");
         }
     }
 
@@ -48,7 +48,7 @@ namespace MyLibrary
         [ExecuteMe]
         public void M1()
         {
-            Console.WriteLine($"{nameof(Foo2)}_M1()");
+            Console.WriteLine($"{nameof(Foo2)}_{nameof(M1)}()");
         }
     }
 
@@ -57,7 +57,13 @@ namespace MyLibrary
         [ExecuteMe]
         public void M1()
         {
-            Console.WriteLine($"{nameof(Foo3)}_M1()");
+            Console.WriteLine($"{nameof(Foo3)}_{nameof(M1)}()");
+        }
+
+        [ExecuteMe(3)]
+        public void M2(int x)
+        {
+            Console.WriteLine($"{nameof(Foo3)}_{nameof(M2)}() {nameof(x)} = {x}");
         }
     }
 }

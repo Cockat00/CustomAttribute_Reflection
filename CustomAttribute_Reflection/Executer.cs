@@ -56,18 +56,17 @@ namespace CustomAttribute_Reflection
 
         private static void MethodParamCtrl(ParameterInfo[] paramsInfos, object[]? actualParamsInfos)
         {
-            if (actualParamsInfos != null)
-            {
-                if (actualParamsInfos.Length != paramsInfos.Length)
-                    throw new TargetParameterCountException($"Custom Attribute of name '{nameof(ExecuteMe)}' permit {actualParamsInfos.Length} arguments " +
-                                                            $"while method require {paramsInfos.Length}");
+            if (actualParamsInfos == null) return;
 
-                for (var i = 0; i < actualParamsInfos.Length; i++)
-                {
-                    if (actualParamsInfos[i].GetType() != paramsInfos[i].ParameterType)
-                        throw new ArgumentException(
-                            $"Cannot match '{actualParamsInfos[i].GetType()}' with '{paramsInfos[i].ParameterType}'");
-                }
+            if (actualParamsInfos.Length != paramsInfos.Length)
+                throw new TargetParameterCountException($"Custom Attribute of name '{nameof(ExecuteMe)}' permit {actualParamsInfos.Length} arguments " +
+                                                        $"while method require {paramsInfos.Length}");
+
+            for (var i = 0; i < actualParamsInfos.Length; i++)
+            {
+                if (actualParamsInfos[i].GetType() != paramsInfos[i].ParameterType)
+                    throw new ArgumentException(
+                        $"Cannot match '{actualParamsInfos[i].GetType()}' with '{paramsInfos[i].ParameterType}'");
             }
         }
 
